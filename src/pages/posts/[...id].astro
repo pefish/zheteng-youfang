@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import {getCollection, render} from 'astro:content';
-export async function getStaticPaths(){return (await getCollection('blog',({data})=>!data.draft)).map(post=>({params:{id:post.id},props:{post}}));}
+export async function getStaticPaths(){return (await getCollection('blog',({data})=>(!data.draft || import.meta.env.DEV))).map(post=>({params:{id:post.id},props:{post}}));}
 const {post}=Astro.props;const {Content,headings}=await render(post);
 const date=post.data.pubDate.toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'});
 const canonical=Astro.site?new URL(Astro.url.pathname,Astro.site).href:undefined;
