@@ -1,0 +1,4 @@
+import {getCollection} from 'astro:content';
+import {site as config} from '../site';
+const esc=(s:string)=>s.replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]!));
+export async function GET({site,url}){const base=site||url.origin;const posts=(await getCollection('blog',({data})=>!data.draft)).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());return new Response(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${esc(config.name)}</title><link>${base}</link><description>${esc(config.description)}</description><language>zh-cn</language>${posts.map(p=>`<item><title>${esc(p.data.title)}</title><link>${new URL(`/posts/${p.id}/`,base)}</link><guid>${new URL(`/posts/${p.id}/`,base)}</guid><description>${esc(p.data.description)}</description><pubDate>${p.data.pubDate.toUTCString()}</pubDate></item>`).join('')}</channel></rss>`,{headers:{'Content-Type':'application/rss+xml; charset=utf-8'}});}

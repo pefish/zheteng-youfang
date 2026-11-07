@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection, render} from 'astro:content';
+export async function getStaticPaths(){return (await getCollection('blog',({data})=>!data.draft)).map(post=>({params:{id:post.id},props:{post}}));}
+const {post}=Astro.props;const {Content,headings}=await render(post);
+const date=post.data.pubDate.toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'});
+const canonical=Astro.site?new URL(Astro.url.pathname,Astro.site).href:undefined;
+---
+<Base title={post.data.title} description={post.data.description} article><div class="article-wrap wrap"><a class="back" href="/">← 全部文章</a><header class="article-header"><div class="eyebrow">{post.data.category} / {date}</div><h1>{post.data.title}</h1><p>{post.data.description}</p><div class="tags">{post.data.tags.map(t=><span>#{t}</span>)}</div></header><div class="article-grid"><article class="prose">{post.data.affiliate && <aside class="disclosure">本文包含推广链接。通过链接购买符合条件的服务，我可能获得佣金。请根据实际需要选择，并以服务商结算页面为准。</aside>}<Content/></article><aside class="toc"><div class="eyebrow">本文目录</div>{headings.filter(h=>h.depth===2).map(h=><a href={`#${h.slug}`}>{h.text}</a>)}<a class="back" href="/">← 返回文章列表</a></aside></div></div><script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:post.data.title,description:post.data.description,datePublished:post.data.pubDate.toISOString(),dateModified:(post.data.updatedDate||post.data.pubDate).toISOString(),mainEntityOfPage:canonical})}/></Base>
