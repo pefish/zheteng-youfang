@@ -3,6 +3,7 @@ title: "这个博客如何发布：写 Markdown，提交后自动上线"
 description: "本站的文章维护流程：修改 Markdown、提交到 GitHub，由 Cloudflare Pages 构建为静态网页。"
 pubDate: 2026-11-07
 category: "建站笔记"
+draft: true
 tags: ["Markdown", "Astro", "GitHub"]
 ---
 

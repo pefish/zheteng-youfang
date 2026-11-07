@@ -13,7 +13,6 @@
 
 - [国内翻墙新手教程：良心云注册、订阅导入与常见问题](src/content/blog/liangxinyun-getting-started.md)
 
-- [这个博客如何发布](src/content/blog/publish-markdown-blog.md)
 
 ## 本地使用
 
