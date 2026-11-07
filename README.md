@@ -4,6 +4,11 @@
 
 技术：Astro / GitHub / Cloudflare Pages。无需数据库和付费服务器。
 
+- 博客：https://zheteng-youfang.pages.dev
+- 仓库：https://github.com/pefish/zheteng-youfang
+- 新建文章：[打开 GitHub 编辑器](https://github.com/pefish/zheteng-youfang/new/main/src/content/blog)
+- 部署分支：`main`，推送后由 Cloudflare 自动构建发布。
+
 ## 文章目录
 
 - [这个博客如何发布](src/content/blog/publish-markdown-blog.md)
