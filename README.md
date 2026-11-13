@@ -11,6 +11,8 @@
 
 ## 文章目录
 
+- [Accio Work 值得试吗？给电商卖家和小团队的 AI 工作助手推荐](src/content/blog/accio-work-review.md)
+
 - [国内翻墙新手教程：良心云注册、订阅导入与常见问题](src/content/blog/liangxinyun-getting-started.md)
 
 
